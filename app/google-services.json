@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "181062771147",
+    "firebase_url": "https://timecapsule-2585d.firebaseio.com",
+    "project_id": "timecapsule-2585d",
+    "storage_bucket": "timecapsule-2585d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181062771147:android:eb18e2fa948c01bf0dd64e",
+        "android_client_info": {
+          "package_name": "com.ryusei_imamura.timecapsule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181062771147-uljki5p365f2n6m3ap4grcj0k5aglmk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg3Is0ASh3tmnXhofsuTDYEY8mxn3qHUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181062771147-uljki5p365f2n6m3ap4grcj0k5aglmk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
