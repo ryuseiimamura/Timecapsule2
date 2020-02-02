@@ -27,7 +27,7 @@ public class AccessActivity extends AppCompatActivity {
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent7 =new Intent(AccessActivity.this,ContentActivity.class);
+                Intent intent7 = new Intent(AccessActivity.this, ContentActivity.class);
                 startActivity(intent7);
             }
         });

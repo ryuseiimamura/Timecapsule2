@@ -6,7 +6,11 @@ public class Access {
     String aSchool;
     String aTeacher;
     String aAikotoba;
-}
+
+
+    public Access(){
+
+    }
 
     public Access(String aGraduate, String aSchool, String aTeacher, String aAikotoba) {
         this.aAikotoba = aAikotoba;
@@ -15,27 +19,23 @@ public class Access {
         this.aTeacher = aTeacher;
     }
 
-    public String getGraduate() {return aGraduate;}
+    public String getaCapsuleName() { return aCapsuleName; }
 
-    public void setGraduate(String aGraduate) {
-        this.aGraduate = aGraduate;
-    }
+    public void setaCapsuleName(String aCapsuleName) { this.aCapsuleName = aCapsuleName; }
 
-    public String getSchool() {return aSchool;}
+    public String getaAikotoba() { return aAikotoba; }
 
-    public void setSchool(String aSchool) {
-        this.aSchool = aSchool;
-    }
+    public void setaAikotoba(String aAikotoba) { this.aAikotoba = aAikotoba; }
 
-    public String getTeacher(){return aTeacher;}
+    public String getaGraduate() { return aGraduate; }
 
-    public void setTeacher(String aTeacher) {
-        this.aTeacher = aTeacher;
-    }
+    public void setaGraduate(String aGraduate) { this.aGraduate = aGraduate; }
 
-    public String getAikotoba(){return aAikotoba;}
+    public String getaSchool() { return aSchool; }
 
-    public void setAikotoba(String aAikotoba) {
-        this.aAikotoba = aAikotoba;
-    }
+    public void setaSchool(String aSchool) { this.aSchool = aSchool; }
+
+    public String getaTeacher() { return aTeacher; }
+
+    public void setaTeacher(String aTeacher) { this.aTeacher = aTeacher; }
 }

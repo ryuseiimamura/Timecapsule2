@@ -22,7 +22,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        button = (Button) findViewById(R.id.button);
+        button = (Button) findViewById(R.id.captureButton);
         textView=(TextView)findViewById(R.id.textView);
 
         final EditText mGradutate=(EditText)findViewById(R.id.graduate);

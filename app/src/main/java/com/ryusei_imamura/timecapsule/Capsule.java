@@ -25,9 +25,7 @@ public  class Capsule {
 
     public String getSchool() {return school;}
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
+    public void setSchool(String school) { this.school = school; }
 
     public String getTeacher(){return teacher;}
 

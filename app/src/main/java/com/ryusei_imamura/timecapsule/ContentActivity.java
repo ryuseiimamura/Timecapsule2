@@ -14,7 +14,7 @@ public class ContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
 
-        Button button = (Button) findViewById(R.id.button3);
+        Button uButton = (Button) findViewById(R.id.button3);
         Button sButton = (Button) findViewById(R.id.button4);
         Button tButton = (Button) findViewById(R.id.button5);
 
@@ -33,11 +33,15 @@ public class ContentActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+        uButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(ContentActivity.this,UploadActivity.class);
+                startActivity(intent3);
+            }
+        });
     }
 
-    public void button4(View v) {
-    }
 
-    public void button5(View v) {
-    }
 }
