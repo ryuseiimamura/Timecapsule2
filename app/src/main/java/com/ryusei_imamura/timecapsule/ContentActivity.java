@@ -43,5 +43,4 @@ public class ContentActivity extends AppCompatActivity {
         });
     }
 
-
 }

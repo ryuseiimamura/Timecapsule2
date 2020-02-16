@@ -1,7 +1,7 @@
 package com.ryusei_imamura.timecapsule;
 
 public class Access {
-    String aCapsuleName;
+//    String aCapsuleName;
     String aGraduate;
     String aSchool;
     String aTeacher;
@@ -19,9 +19,9 @@ public class Access {
         this.aTeacher = aTeacher;
     }
 
-    public String getaCapsuleName() { return aCapsuleName; }
-
-    public void setaCapsuleName(String aCapsuleName) { this.aCapsuleName = aCapsuleName; }
+//    public String getaCapsuleName() { return aCapsuleName; }
+//
+//    public void setaCapsuleName(String aCapsuleName) { this.aCapsuleName = aCapsuleName; }
 
     public String getaAikotoba() { return aAikotoba; }
 
