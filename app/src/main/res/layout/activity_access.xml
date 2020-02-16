@@ -19,14 +19,6 @@
             android:textSize="36sp" />
 
         <EditText
-            android:id="@+id/aCapsuleName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="タイムカプセルの名前"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/aGraduate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
