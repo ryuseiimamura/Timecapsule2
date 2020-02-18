@@ -63,10 +63,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             changeAvtivity();
-                        }else{
-                            Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -77,14 +77,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             changeAvtivity();
-                        }else{
-                            Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -101,8 +101,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mEmailField.setError(null);
         }
 
-        String password = mEmailField.getText().toString();
-        if (TextUtils.isEmpty(email)) {
+        String password = mPasswdField.getText().toString();
+        if (TextUtils.isEmpty(password)) {
             mPasswdField.setError("Required.");
             valid = false;
         } else {
@@ -112,8 +112,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return valid;
     }
 
-    private void changeAvtivity(){
-        Intent intent = new Intent(LoginActivity.this,SettingActivity.class);
+    private void changeAvtivity() {
+        Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
         startActivity(intent);
     }
 }
