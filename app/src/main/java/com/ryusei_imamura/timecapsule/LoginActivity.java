@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signIn(mEmailField.getText().toString(), mPasswdField.getText().toString());
                 break;
             case R.id.emailSignUpButton:
-                creatAccount(mPasswdField.getText().toString(), mEmailField.getText().toString());
+                creatAccount(mEmailField.getText().toString(), mPasswdField.getText().toString());
                 break;
         }
     }
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             changeAvtivity();
                         } else {
-                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             changeAvtivity();
                         } else {
-                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
