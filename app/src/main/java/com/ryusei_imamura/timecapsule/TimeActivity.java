@@ -10,10 +10,20 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.security.Timestamp;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class TimeActivity extends AppCompatActivity {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference refMsg = database.getReference("capsule");
+    List<Capsule> capsules = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +52,16 @@ public class TimeActivity extends AppCompatActivity {
                 );
 
                 datePickerDialog.show();
+
+                Date mDate = new Date();  //Date型の宣言
+                mDate = date.getTime();   //calendar型のdateからDate型のmDateに変換
+                Timestamp timestamp = new Timestamp(mDate.getTime());  //Date型からTimestamp型にしたいけどエラー
             }
         });
+
+
+//                Capsule myCapsule = new Capsule();
+
     }
 
 }

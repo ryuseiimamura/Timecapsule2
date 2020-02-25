@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 signIn(mEmailField.getText().toString(), mPasswdField.getText().toString());
                 break;
             case R.id.emailSignUpButton:
-                creatAccount(mEmailField.getText().toString(), mPasswdField.getText().toString());
+                createAccount(mEmailField.getText().toString(), mPasswdField.getText().toString());
                 break;
         }
     }
 
-    private void creatAccount(String email, String password) {
+    private void createAccount(String email, String password) {
         if (!validateForm()) {
             return;
         }
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            changeAvtivity();
+                            changeActivity();
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            changeAvtivity();
+                            changeActivity();
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return valid;
     }
 
-    private void changeAvtivity() {
+    private void changeActivity() {
         Intent intent = new Intent(LoginActivity.this, SettingActivity.class);
         startActivity(intent);
     }
