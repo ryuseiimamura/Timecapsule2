@@ -12,18 +12,24 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.security.Timestamp;
+import java.text.DateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TimeActivity extends AppCompatActivity {
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refMsg = database.getReference("capsule");
-    List<Capsule> capsules = new ArrayList<>();
+
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    Map map = new HashMap();
+    map.put("timestamp",ServerValue.TIMESTAMP);   //timestampを追加するための準備をしたい？
+    ref.child("capsule").updateChildren(map);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +58,39 @@ public class TimeActivity extends AppCompatActivity {
                 );
 
                 datePickerDialog.show();
-
-                Date mDate = new Date();  //Date型の宣言
-                mDate = date.getTime();   //calendar型のdateからDate型のmDateに変換
-                Timestamp timestamp = new Timestamp(mDate.getTime());  //Date型からTimestamp型にしたいけどエラー
-            }
+          }
         });
 
+//CapsuleからLongにして投稿→表示する段階でDateにしていく方針で
 
-//                Capsule myCapsule = new Capsule();
+
+//timestampをfirebaseに投げたい？のではないか
+        public class YourModelClass {
+            private Map<String, String> timestamp;
+
+            public YourModelClass() {
+            }
+
+            public void setTimestamp(Map<String, String> timestamp) {
+                this.timestamp = timestamp;
+            }
+
+            public Map<String, String> getTimestamp() {
+                return timestamp;
+            }
+        }
+        //LongからDateに変換したいらしい
+        public static String getTimeDate ( long timestamp){
+            try {
+                DateFormat dateFormat = DateFormat.getDateTimeInstance();
+                Date netDate = (new Date(timestamp));
+                return dateFormat.format(netDate);
+            } catch (Exception e) {
+                return "date";
+            }
+        }
+
+        String dateText = getTimeDate(timestamp);
 
     }
 
