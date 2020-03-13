@@ -16,6 +16,7 @@ import com.google.firebase.database.ServerValue;
 
 import java.security.Timestamp;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,12 +25,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.text.DateFormat.getDateTimeInstance;
+
 public class TimeActivity extends AppCompatActivity {
 
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-    Map map = new HashMap();
-    map.put("timestamp",ServerValue.TIMESTAMP);   //timestampを追加するための準備をしたい？
-    ref.child("capsule").updateChildren(map);
+    Calendar date = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,16 @@ public class TimeActivity extends AppCompatActivity {
         aLimit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar date = Calendar.getInstance();
-
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         TimeActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                aLimit.setText(String.format("%d/%02d/%02d", year, month + 1, dayOfMonth));
+                                // aLimit.setText(String.format("%d/%02d/%02d", year, month + 1, dayOfMonth)); もともとはこれでsetTextだけしてた
+                                date.set(year, month, dayOfMonth, 0, 0);
+                                SimpleDateFormat dateFormatEntry = new SimpleDateFormat("yyyy/M/dd");
+                                String formattedDate = dateFormatEntry.format(date.getTime());
+                                aLimit.setText(formattedDate);
                             }
                         },
                         date.get(Calendar.YEAR),
@@ -58,40 +61,29 @@ public class TimeActivity extends AppCompatActivity {
                 );
 
                 datePickerDialog.show();
-          }
+            }
         });
 
-//CapsuleからLongにして投稿→表示する段階でDateにしていく方針で
-
-
-//timestampをfirebaseに投げたい？のではないか
-        public class YourModelClass {
-            private Map<String, String> timestamp;
-
-            public YourModelClass() {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map = new HashMap();
+                map.put("timestamp", date.getTimeInMillis());
+                ref.child("カプセルのキー").updateChildren(map);
+                //多分画面遷移もここにくる＆ホストとホストじゃない人でActivityわけるのわすれないで＆画像の投稿の機能どうなるのかな
             }
-
-            public void setTimestamp(Map<String, String> timestamp) {
-                this.timestamp = timestamp;
-            }
-
-            public Map<String, String> getTimestamp() {
-                return timestamp;
-            }
-        }
-        //LongからDateに変換したいらしい
-        public static String getTimeDate ( long timestamp){
-            try {
-                DateFormat dateFormat = DateFormat.getDateTimeInstance();
-                Date netDate = (new Date(timestamp));
-                return dateFormat.format(netDate);
-            } catch (Exception e) {
-                return "date";
-            }
-        }
-
-        String dateText = getTimeDate(timestamp);
+        });
 
     }
 
+    //LongからDateに変換したいらしい　←場所がダメでエラーだったっぽい
+    public static String getTimeDate ( long timestamp){
+        try {
+            DateFormat dateFormat = getDateTimeInstance();
+            Date netDate = (new Date(timestamp));
+            return dateFormat.format(netDate);
+        } catch (Exception e) {
+            return "date";
+        }
+    }
 }
