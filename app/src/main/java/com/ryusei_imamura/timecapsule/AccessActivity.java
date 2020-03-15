@@ -52,22 +52,23 @@ public class AccessActivity extends AppCompatActivity {
                 String teacher = vTeacher.getText().toString();
                 String aikotoba = vAikotoba.getText().toString();
 
-                Capsule myCapsule = new Capsule(graduate,school,teacher,aikotoba);
-                boolean successFlag=false;
+                Capsule myCapsule = new Capsule(graduate, school, teacher, aikotoba, 0L); //Long型のときは数字のあとに"L"いれる
 
-                for(Capsule capsule: capsules){
-                    if(capsule.school.equals(myCapsule.school) && capsule.graduate.equals(myCapsule.graduate)&& capsule.teacher.equals(myCapsule.teacher)&& capsule.aikotoba.equals(myCapsule.aikotoba)){
-                        successFlag=true;
-                        break;
+                for (Capsule capsule : capsules) {
+                    if (capsule.school.equals(myCapsule.school) && capsule.graduate.equals(myCapsule.graduate) && capsule.teacher.equals(myCapsule.teacher) && capsule.aikotoba.equals(myCapsule.aikotoba)) {
+                        long now = System.currentTimeMillis(); //現在時刻の取得
+                        //Long型のまま現在時刻とカプセルのオープン可時刻との比較 keyをfire baseからgetしてくる
+                        //↓カプセルに設定した時刻　とりあえず名前これ
+                        if (capsule.openDate >= now) {
+                            Toast.makeText(getApplicationContext(), "まだ開けられる日付になってません！", Toast.LENGTH_LONG).show();
+                        } else {
+                            Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
+                            startActivity(intent7);
+                        }
+                        return;
                     }
                 }
-
-                if (successFlag) {
-                    Intent intent7 = new Intent(AccessActivity.this, ContentActivity.class);
-                    startActivity(intent7);
-                }else {
-                    Toast.makeText(getApplicationContext(),"カプセルがみつかりません！",Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(getApplicationContext(), "カプセルがみつかりません！", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -76,7 +77,7 @@ public class AccessActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Capsule value = dataSnapshot.getValue(Capsule.class);
-                capsules.add(value);
+                capsules.add(value); //←こいつ全部データベースのやつもってる
             }
 
             @Override

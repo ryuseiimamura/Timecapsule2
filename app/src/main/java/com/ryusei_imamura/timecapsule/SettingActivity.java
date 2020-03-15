@@ -38,9 +38,10 @@ public class SettingActivity extends AppCompatActivity {
                 String teacher = mTeacher.getText().toString();
                 String aikotoba = mAikotoba.getText().toString();
 
-                Capsule capsule = new Capsule(graduate,school,teacher,aikotoba);
+                Capsule capsule = new Capsule(graduate,school,teacher,aikotoba,0L);
 
                 refMsg.push().setValue(capsule);
+
                 Intent intent=new Intent(SettingActivity.this,ContentActivity.class);
                 startActivity(intent);
             }

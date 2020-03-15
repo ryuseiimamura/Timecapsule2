@@ -3,6 +3,8 @@ package com.ryusei_imamura.timecapsule;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -68,16 +70,21 @@ public class TimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Map map = new HashMap();
-                map.put("timestamp", date.getTimeInMillis());
+                map.put("openDate", date.getTimeInMillis());
                 ref.child("カプセルのキー").updateChildren(map);
-                //多分画面遷移もここにくる＆ホストとホストじゃない人でActivityわけるのわすれないで＆画像の投稿の機能どうなるのかな
+//                //shared preferenceでカプセルのキーを保存
+//                SharedPreferences data = getSharedPreferences("カプセルのキー", Context.MODE_PRIVATE);
+//
+//                SharedPreferences.Editor editor = data.edit();
+//                editor.putLong("Capsule'skeySave(てきとう)", "map");
+//                editor.apply();
             }
         });
 
     }
 
     //LongからDateに変換したいらしい　←場所がダメでエラーだったっぽい
-    public static String getTimeDate ( long timestamp){
+    public static String getTimeDate(long timestamp) {
         try {
             DateFormat dateFormat = getDateTimeInstance();
             Date netDate = (new Date(timestamp));
