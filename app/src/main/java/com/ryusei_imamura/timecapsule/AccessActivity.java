@@ -60,14 +60,14 @@ public class AccessActivity extends AppCompatActivity {
                 for (Capsule capsule : capsules) {
                     if (capsule.school.equals(myCapsule.school) && capsule.graduate.equals(myCapsule.graduate) && capsule.teacher.equals(myCapsule.teacher) && capsule.aikotoba.equals(myCapsule.aikotoba)) {
                         long now = System.currentTimeMillis(); //現在時刻の取得
-                        //Long型のまま現在時刻とカプセルのオープン可時刻との比較 keyをfire baseからgetしてくる(まだしてないからうごかない)　チェック用→if(true){} と if(false){}
+                        //Long型のまま現在時刻とカプセルのオープン可時刻との比較 　チェック用→if(true){} と if(false){}
                         if (capsule.openDate >= now) {
                             Toast.makeText(getApplicationContext(), "まだ開けられる日付になってません！", Toast.LENGTH_LONG).show();
                         } else if(capsule.openDate==0L) {
                             //投稿に使う用のほう(うまくいった)
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
-                                //アクセスした人の端末にもアクセスしているカプセルのキーを保存していく
+                                //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく
 //                            String key = refMsg.child("capsule").push().getKey();
 //                            String key = refMsg.push().getKey();
 //

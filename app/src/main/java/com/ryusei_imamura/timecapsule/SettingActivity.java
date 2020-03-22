@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,21 +43,30 @@ public class SettingActivity extends AppCompatActivity {
 
                 Capsule capsule = new Capsule(graduate,school,teacher,aikotoba,0L);
 
-              refMsg.push().setValue(capsule);
-//                key取得するやつ    keyがとれてるかどこでみる？
-//                String key = refMsg.child("capsule").push().getKey();
+                //key取得するやつ    keyがとれてるかどこでみる？→保存したやつをgetStringで入手したらなんらかの方法で出力すればおｋ
+//                String key = refMsg.push().getKey();
 
-                String key = refMsg.push().getKey();
+//              refMsg.push().setValue(capsule);
+              refMsg.push().setValue(capsule, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError,
+                                                   DatabaseReference databaseReference) {
+                                String key = databaseReference.getKey();
 
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("current_capsule_key",key);
-                editor.commit();
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString("current_capsule_key",key);
+                                editor.commit();
+
+                                Intent intent=new Intent(SettingActivity.this,ContentActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
 
 // create a child with index value
 //                refMsg.child(key).setValue(new );
 
-                Intent intent=new Intent(SettingActivity.this,ContentActivity.class);
-                startActivity(intent);
+
             }
         });
     }

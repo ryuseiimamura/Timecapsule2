@@ -15,8 +15,8 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="期限を入力するとその日まで開けられません"
-            android:textSize="72sp" />
+            android:text="期限を入力するとその日まで開けられません(二回タップしたらカレンダーが出ます！)"
+            android:textSize="36sp" />
 
         <EditText
             android:id="@+id/aLimit"

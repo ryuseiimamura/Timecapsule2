@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +34,7 @@ public class TimeActivity extends AppCompatActivity {
 
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     Calendar date = Calendar.getInstance();
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,10 @@ public class TimeActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button);
         TextView textView6 = (TextView) findViewById(R.id.textView6);
         final EditText aLimit = (EditText) findViewById(R.id.aLimit);
+        pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
+
+        String key = pref.getString("current_capsule_key","default");
+        Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
 
         aLimit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,13 +77,13 @@ public class TimeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Map map = new HashMap();
                 map.put("openDate", date.getTimeInMillis());
-                ref.child("カプセルのキー").updateChildren(map);
+
+                String key = pref.getString("current_capsule_key","default");
+                Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
+
+                ref.child("capsule").child(key).child("openDate").setValue(date.getTimeInMillis());
 //                //shared preferenceでカプセルのキーを保存
-//                SharedPreferences data = getSharedPreferences("カプセルのキー", Context.MODE_PRIVATE);
-//
-//                SharedPreferences.Editor editor = data.edit();
-//                editor.putLong("Capsule'skeySave(てきとう)", "map");
-//                editor.apply();
+
             }
         });
 
