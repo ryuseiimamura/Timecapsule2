@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class AccessActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference refMsg = database.getReference("capsule");
     List<Capsule> capsules = new ArrayList<>();
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class AccessActivity extends AppCompatActivity {
         final EditText vSchool = (EditText) findViewById(R.id.aSchool);
         final EditText vTeacher = (EditText) findViewById(R.id.aTeacher);
         final EditText vAikotoba = (EditText) findViewById(R.id.aAikotoba);
+        pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +67,13 @@ public class AccessActivity extends AppCompatActivity {
                             //投稿に使う用のほう(うまくいった)
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
-                            String key = refMsg.child("capsule").push().getKey();
+                                //アクセスした人の端末にもアクセスしているカプセルのキーを保存していく
+//                            String key = refMsg.child("capsule").push().getKey();
+//                            String key = refMsg.push().getKey();
+//
+//                            SharedPreferences.Editor editor = pref.edit();
+//                            editor.putString("current_capsule_key",key);
+//                            editor.commit();
                         }else{
                             //作ったカプセルの中を見る画面に遷移
                             Intent intent8 = new Intent(AccessActivity.this, WatchActivity.class);
