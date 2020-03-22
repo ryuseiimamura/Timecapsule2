@@ -22,7 +22,7 @@ public class TitleActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent8 = new Intent(TitleActivity.this, TimeActivity.class);
+                Intent intent8 = new Intent(TitleActivity.this, SettingActivity.class);
 //                Intent intent8 = new Intent(TitleActivity.this, LoginActivity.class);　　ログイン機能がアレなので確認用に　どっちかコメントアウトで
 
                 startActivity(intent8);

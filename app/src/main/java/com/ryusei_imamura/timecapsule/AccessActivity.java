@@ -57,15 +57,20 @@ public class AccessActivity extends AppCompatActivity {
                 for (Capsule capsule : capsules) {
                     if (capsule.school.equals(myCapsule.school) && capsule.graduate.equals(myCapsule.graduate) && capsule.teacher.equals(myCapsule.teacher) && capsule.aikotoba.equals(myCapsule.aikotoba)) {
                         long now = System.currentTimeMillis(); //現在時刻の取得
-                        //Long型のまま現在時刻とカプセルのオープン可時刻との比較 keyをfire baseからgetしてくる
-                        //↓カプセルに設定した時刻　とりあえず名前これ
+                        //Long型のまま現在時刻とカプセルのオープン可時刻との比較 keyをfire baseからgetしてくる(まだしてないからうごかない)　チェック用→if(true){} と if(false){}
                         if (capsule.openDate >= now) {
                             Toast.makeText(getApplicationContext(), "まだ開けられる日付になってません！", Toast.LENGTH_LONG).show();
-                        } else {
+                        } else if(capsule.openDate==0L) {
+                            //投稿に使う用のほう(うまくいった)
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
+                            String key = refMsg.child("capsule").push().getKey();
+                        }else{
+                            //作ったカプセルの中を見る画面に遷移
+                            Intent intent8 = new Intent(AccessActivity.this, WatchActivity.class);
+                            startActivity(intent8);
                         }
-                        return;
+                        return; //条件達成してたらここで処理を終了して次に行く　ここでいうとopenDateでなんらかにひっかかったら下のtoastはスキップされて次へ行く
                     }
                 }
                     Toast.makeText(getApplicationContext(), "カプセルがみつかりません！", Toast.LENGTH_LONG).show();

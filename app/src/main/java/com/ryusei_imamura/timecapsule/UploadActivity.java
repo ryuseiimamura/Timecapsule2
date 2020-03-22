@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class UploadActivity extends AppCompatActivity {
-
+//全面的に保留してます
     private static final int READ_REQUEST_CODE = 42;
 
     private FirebaseStorage storage;

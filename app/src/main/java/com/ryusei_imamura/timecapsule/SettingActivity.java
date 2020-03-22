@@ -40,7 +40,10 @@ public class SettingActivity extends AppCompatActivity {
 
                 Capsule capsule = new Capsule(graduate,school,teacher,aikotoba,0L);
 
-                refMsg.push().setValue(capsule);
+              refMsg.push().setValue(capsule);
+//                key取得するやつ    keyがとれてるかどこでみる？
+                String key = refMsg.child("capsule").push().getKey();
+
 
                 Intent intent=new Intent(SettingActivity.this,ContentActivity.class);
                 startActivity(intent);
