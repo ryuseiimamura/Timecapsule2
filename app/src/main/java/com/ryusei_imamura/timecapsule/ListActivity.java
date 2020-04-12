@@ -36,7 +36,7 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mListView = (ListView) findViewById(R.id.list_view);
-        Button button6=(Button)findViewById(R.id.button6);
+        Button button6 = (Button) findViewById(R.id.button6);
 
         items = new ArrayList<>();
         postAdapter = new PostAdapter(this, 0, items);
@@ -50,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
 
                 items.add(value);
 
-              postAdapter.notifyDataSetChanged();
+                postAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -77,7 +77,7 @@ public class ListActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent6=new Intent(ListActivity.this,TimeActivity.class);
+                Intent intent6 = new Intent(ListActivity.this, TimeActivity.class);
                 startActivity(intent6);
             }
         });

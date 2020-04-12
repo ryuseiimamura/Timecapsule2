@@ -17,11 +17,11 @@ public class ContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
 
-        Button uButton = (Button) findViewById(R.id.button3);
+//        Button uButton = (Button) findViewById(R.id.button3);
         Button sButton = (Button) findViewById(R.id.button4);
         Button tButton = (Button) findViewById(R.id.button5);
         pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
-        Toast.makeText(getApplicationContext(), pref.getString("current_capsule_key","test"), Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), pref.getString("current_capsule_key","test"), Toast.LENGTH_LONG).show(); カプセルのキーのチェック用
 
         sButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,13 +39,13 @@ public class ContentActivity extends AppCompatActivity {
             }
         });
 
-        uButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent3 = new Intent(ContentActivity.this,UploadActivity.class);
-                startActivity(intent3);
-            }
-        });
+//        uButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent3 = new Intent(ContentActivity.this,UploadActivity.class);
+//                startActivity(intent3);
+//            }
+//        });　とりあえず画像投稿はオミット
     }
 
 }

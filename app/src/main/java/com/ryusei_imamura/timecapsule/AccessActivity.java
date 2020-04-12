@@ -67,6 +67,7 @@ public class AccessActivity extends AppCompatActivity {
                             //投稿に使う用のほう(うまくいった)
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
+
                                 //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく
 //                            String key = refMsg.child("capsule").push().getKey();
 //                            String key = refMsg.push().getKey();

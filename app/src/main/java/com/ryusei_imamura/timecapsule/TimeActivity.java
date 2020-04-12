@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -46,7 +47,7 @@ public class TimeActivity extends AppCompatActivity {
         pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
 
         String key = pref.getString("current_capsule_key","default");
-        Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
 
         aLimit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +80,15 @@ public class TimeActivity extends AppCompatActivity {
                 map.put("openDate", date.getTimeInMillis());
 
                 String key = pref.getString("current_capsule_key","default");
-                Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
 
                 ref.child("capsule").child(key).child("openDate").setValue(date.getTimeInMillis());
 //                //shared preferenceでカプセルのキーを保存
+                Intent intent = new Intent(TimeActivity.this,TitleActivity.class);
+                startActivity(intent);
 
             }
         });
-
     }
 
     //LongからDateに変換したいらしい　←場所がダメでエラーだったっぽい
@@ -99,4 +101,6 @@ public class TimeActivity extends AppCompatActivity {
             return "date";
         }
     }
+
+
 }

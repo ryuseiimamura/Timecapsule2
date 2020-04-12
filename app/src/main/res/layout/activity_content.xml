@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="写真　動画" />
+            android:text="写真　動画(じゅんびちゅう)" />
 
         <Button
             android:id="@+id/button4"

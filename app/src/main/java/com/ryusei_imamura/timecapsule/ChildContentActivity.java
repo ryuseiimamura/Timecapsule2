@@ -14,33 +14,33 @@ public class ChildContentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_content);
 
-        Button uButton = (Button) findViewById(R.id.button3);
-        Button sButton = (Button) findViewById(R.id.button4);
-        Button tButton = (Button) findViewById(R.id.button5);
+        Button uButton = (Button) findViewById(R.id.button11);
+        Button sButton = (Button) findViewById(R.id.button2);
+        Button tButton = (Button) findViewById(R.id.button10);
 
         sButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChildContentActivity.this, PostActivity.class);
                 startActivity(intent);
-            }
+            }   //テキスト投稿
         });
 
         tButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(ChildContentActivity.this, ListActivity.class);
+                Intent intent2 = new Intent(ChildContentActivity.this, TitleActivity.class);
                 startActivity(intent2);
             }
-        });
+        });  //ホストじゃないのでlistにはとばさない
 
-        uButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent3 = new Intent(ChildContentActivity.this,UploadActivity.class);
-                startActivity(intent3);
-            }
-        });
+//        uButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent3 = new Intent(ChildContentActivity.this,UploadActivity.class);
+//                startActivity(intent3);
+//            }
+//        }); 画像投稿オミット
     }
 
 }
