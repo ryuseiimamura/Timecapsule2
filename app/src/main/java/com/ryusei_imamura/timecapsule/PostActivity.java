@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PostActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refMsg = database.getReference("capsule");
+    DatabaseReference refMsg = database.getReference("message");
 
     EditText mUsernametext;
     EditText mPostText;
