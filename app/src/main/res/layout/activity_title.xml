@@ -15,19 +15,22 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Time Capsle"
-            android:textSize="120sp" />
+            android:textSize="100sp" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="カプセルをつくる" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="カプセルにアクセス" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
