@@ -68,13 +68,17 @@ public class AccessActivity extends AppCompatActivity {
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
 
-                                //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく
+                            //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく→おかしい！！！！！！！！！！！！
 //                            String key = refMsg.child("capsule").push().getKey();
 //                            String key = refMsg.push().getKey();
-//
-//                            SharedPreferences.Editor editor = pref.edit();
-//                            editor.putString("current_capsule_key",key);
-//                            editor.commit();
+                              String key = pref.getString("current_capsule_key","default");
+
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("current_capsule_key",key);
+                            editor.commit();
+
+//                            Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
+
                         }else{
                             //作ったカプセルの中を見る画面に遷移
                             Intent intent8 = new Intent(AccessActivity.this, WatchActivity.class);
