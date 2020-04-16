@@ -7,6 +7,8 @@ public class Capsule {
     String aikotoba;
     Long openDate;
 
+
+
     public Capsule() {
 
     }

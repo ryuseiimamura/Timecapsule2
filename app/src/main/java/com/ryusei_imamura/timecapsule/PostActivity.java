@@ -12,6 +12,9 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PostActivity extends AppCompatActivity {
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -37,14 +40,18 @@ public class PostActivity extends AppCompatActivity {
     public void post(View v) {
         String message = mPostText.getText().toString();
         String userName = mUsernametext.getText().toString();
-        Post post = new Post(userName, message);
-
-        refMsg.push().setValue(post);
+        Map map = new HashMap();
+        Map map2 = new HashMap();
+        map.put("message",message);
+        map2.put("userName",userName);
 
         String key = pref.getString("current_capsule_key","default");
         pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
         ref.child("capsule").child(key).child("message").setValue(message);
-        ref.child("capsule").child(key).child("message").setValue(userName);
+        ref.child("capsule").child(key).child("userName").setValue(userName);
+
+        //        Post post = new Post(userName, message);
+        //        refMsg.push().setValue(post);
 
         finish();
     }
