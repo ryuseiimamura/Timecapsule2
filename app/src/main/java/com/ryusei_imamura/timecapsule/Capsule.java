@@ -6,19 +6,23 @@ public class Capsule {
     String teacher;
     String aikotoba;
     Long openDate;
-
-
+//
+//    String message;
+//    String userName;
 
     public Capsule() {
 
     }
 
-    public Capsule(String graduate, String school, String teacher, String aikotoba,Long openDate) {
+    public Capsule(String graduate, String school, String teacher, String aikotoba, Long openDate) {
         this.aikotoba = aikotoba;
         this.school = school;
         this.graduate = graduate;
         this.teacher = teacher;
         this.openDate = openDate;
+//        this.userName = userName;
+//        this.message = message;
+
     }
 
     public String getGraduate() {
@@ -57,8 +61,22 @@ public class Capsule {
         return openDate;
     }
 
+    public void setOpenDate(Long openDate) { this.openDate = openDate; }
 
-    public void setOpenDate(Long openDate) {
-        this.openDate = openDate;
-    }
+//このアプローチじゃあキツイかもね
+//    public String getMessage() {
+//        return message;
+//    }
+//
+//    public void setMessage(String message) {
+//        this.message = message;
+//    }
+//
+//    public String getUserName() {
+//        return userName;
+//    }
+//
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
 }

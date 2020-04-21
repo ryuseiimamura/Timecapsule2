@@ -43,7 +43,11 @@ public class AccessActivity extends AppCompatActivity {
         final EditText vSchool = (EditText) findViewById(R.id.aSchool);
         final EditText vTeacher = (EditText) findViewById(R.id.aTeacher);
         final EditText vAikotoba = (EditText) findViewById(R.id.aAikotoba);
-        pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
+
+
+//        pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
+//        String key = pref.getString("current_capsule_key", "default");
+
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,7 @@ public class AccessActivity extends AppCompatActivity {
                 String teacher = vTeacher.getText().toString();
                 String aikotoba = vAikotoba.getText().toString();
 
+
                 Capsule myCapsule = new Capsule(graduate, school, teacher, aikotoba, 0L); //Long型のときは数字のあとに"L"いれる
 
                 for (Capsule capsule : capsules) {
@@ -63,23 +68,28 @@ public class AccessActivity extends AppCompatActivity {
                         //Long型のまま現在時刻とカプセルのオープン可時刻との比較 　チェック用→if(true){} と if(false){}
                         if (capsule.openDate >= now) {
                             Toast.makeText(getApplicationContext(), "まだ開けられる日付になってません！", Toast.LENGTH_LONG).show();
-                        } else if(capsule.openDate==0L) {
+                        } else if (capsule.openDate == 0L) {
+                            //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく
+
+                            pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
+                            String key = pref.getString("current_capsule_key", "default");
+
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("current_capsule_key", key);
+                            editor.commit();
+
                             //投稿に使う用のほう(うまくいった)
                             Intent intent7 = new Intent(AccessActivity.this, ChildContentActivity.class);
                             startActivity(intent7);
 
-                            //キーをfirebaseからgetしてくるアクセスした人の端末にもアクセスしているカプセルのキーを保存していく→おかしい！！！！！！！！！！！！
+
 //                            String key = refMsg.child("capsule").push().getKey();
 //                            String key = refMsg.push().getKey();
-                              String key = pref.getString("current_capsule_key","default");
 
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("current_capsule_key",key);
-                            editor.commit();
 
 //                            Toast.makeText(getApplicationContext(),key,Toast.LENGTH_LONG).show();
 
-                        }else{
+                        } else {
                             //作ったカプセルの中を見る画面に遷移
                             Intent intent8 = new Intent(AccessActivity.this, WatchActivity.class);
                             startActivity(intent8);
@@ -87,7 +97,7 @@ public class AccessActivity extends AppCompatActivity {
                         return; //条件達成してたらここで処理を終了して次に行く　ここでいうとopenDateでなんらかにひっかかったら下のtoastはスキップされて次へ行く
                     }
                 }
-                    Toast.makeText(getApplicationContext(), "カプセルがみつかりません！", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "カプセルがみつかりません！", Toast.LENGTH_LONG).show();
             }
         });
 

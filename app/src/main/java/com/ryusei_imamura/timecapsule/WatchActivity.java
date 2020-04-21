@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class WatchActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refMsg = database.getReference("message");
+    DatabaseReference refMsg = database.getReference("capsule");
 
     ListView mListView;
 

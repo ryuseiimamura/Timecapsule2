@@ -18,7 +18,7 @@ import java.util.Map;
 public class PostActivity extends AppCompatActivity {
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference refMsg = database.getReference("message");
+    DatabaseReference refMsg = database.getReference("capsule");
     SharedPreferences pref;
 
 
@@ -35,23 +35,37 @@ public class PostActivity extends AppCompatActivity {
         mPostText = (EditText) findViewById(R.id.message);
         mPostButton = (Button) findViewById(R.id.post);
 
+        pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
+
+        String key = pref.getString("current_capsule_key", "default");
+
     }
 
     public void post(View v) {
         String message = mPostText.getText().toString();
         String userName = mUsernametext.getText().toString();
-        Map map = new HashMap();
-        Map map2 = new HashMap();
-        map.put("message",message);
-        map2.put("userName",userName);
 
-        String key = pref.getString("current_capsule_key","default");
+//        Map map = new HashMap();
+//        map.put("message", message);
+//
+//        Map map2 = new HashMap();
+//        map2.put("userName", userName);
+
+        String key = pref.getString("current_capsule_key", "default");
         pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
-        ref.child("capsule").child(key).child("message").setValue(message);
-        ref.child("capsule").child(key).child("userName").setValue(userName);
 
-        //        Post post = new Post(userName, message);
-        //        refMsg.push().setValue(post);
+        Post post = new Post(userName, message);
+        refMsg.child(key).child("messages").push().setValue(post);
+//
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putString("current_capsule_key", key);
+//        editor.commit();
+//
+
+
+//        ref.child("capsule").child(key).child("messages").child("message").setValue(message);
+//        ref.child("capsule").child(key).child("messages").child("userName").setValue(userName);
+
 
         finish();
     }

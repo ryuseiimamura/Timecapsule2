@@ -31,6 +31,7 @@ public class SettingActivity extends AppCompatActivity {
         final EditText mSchool=(EditText)findViewById(R.id.school);
         final EditText mTeacher=(EditText)findViewById(R.id.teacher);
         final EditText mAikotoba=(EditText)findViewById(R.id.aikotoba);
+
         pref = getSharedPreferences("pref_capsule", MODE_PRIVATE);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +41,7 @@ public class SettingActivity extends AppCompatActivity {
                 String school = mSchool.getText().toString();
                 String teacher = mTeacher.getText().toString();
                 String aikotoba = mAikotoba.getText().toString();
+
 
                 Capsule capsule = new Capsule(graduate,school,teacher,aikotoba,0L);
 
